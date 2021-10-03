@@ -38,16 +38,15 @@ def get_all_features_from_data(data, sr):
     harmony_mean = np.mean(librosa.effects.harmonic(y=data))
     harmony_var = np.var(librosa.effects.harmonic(y=data))
 
-    # TODO: find the way to create the perceptrs
-    # perceptr_mean = np.mean()
-    # perceptr_var = np.var()
+    perceptr_mean = np.mean(librosa.effects.percussive(y=data))
+    perceptr_var = np.var(librosa.effects.percussive(y=data))
 
     tempo = librosa.beat.beat_track(y=data, sr=sr)[0]
 
     mfcc = librosa.feature.mfcc(y=data, sr=sr, n_mfcc=20)
 
     mfcc1_mean = np.mean(mfcc[0])
-    mfcc1_var = np.mean(mfcc[0])
+    mfcc1_var = np.var(mfcc[0])
 
     mfcc2_mean = np.mean(mfcc[1])
     mfcc2_var = np.var(mfcc[1])
