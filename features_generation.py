@@ -14,7 +14,7 @@ def get_data(path):
 
 def get_all_features_from_data(data, sr):
 
-    length = librosa.get_duration(y=data, sr=sr)
+    length = data.shape[0]
 
     chroma_stft_mean = np.mean(librosa.feature.chroma_stft(y=data, sr=sr))
     chroma_stft_var = np.var(librosa.feature.chroma_stft(y=data, sr=sr))

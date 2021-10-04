@@ -31,10 +31,12 @@ def calculate_features(input_dir, output_file):
 
 
 def main():
-    # calculate_features(input_dir=DIRECTORY, output_file=CSV_FILE)
+    calculate_features(input_dir=DIRECTORY, output_file=CSV_FILE)
 
     df_given = pd.read_csv(ORIGIN_FILE)
-    df_calculated = pd.read_csv(CSV_FILE, header=False)
+    df_calculated = pd.read_csv(CSV_FILE, names=df_given.columns[:-1])
+    print(df_calculated.head())
+    print(df_given.iloc[:, :-1].head())
 
 
 if __name__ == '__main__':
