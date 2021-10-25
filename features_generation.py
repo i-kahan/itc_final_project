@@ -1,18 +1,30 @@
 import numpy as np
 import librosa
-# import IPython.display as ipd
-# import matplotlib.pyplot as plt
-# import librosa.display
 import os
+
+# In order to predict the genre of music out of the original dataset,
+# this file helps to take file and prepare it for the model.
 
 
 def get_data(path):
+    """
+    The first step in order to find the features in wav file is to take the file and extract the data (x),
+    sample_right (sr) and file_name.
+    :param path: path of the file to extract.
+    :return: X, sr, file_name
+    """
     directory, file_name = os.path.split(path)
     x, sr = librosa.load(path)
     return x, sr, file_name
 
 
 def get_all_features_from_data(data, sr):
+    """
+    Getting the features from the data. This is the important part of the procedure.
+    :param data: np.array with the data from the file.
+    :param sr: The sample right
+    :return: list with all the features for the model for prediction.
+    """
 
     length = data.shape[0]
 
@@ -117,11 +129,17 @@ def get_all_features_from_data(data, sr):
                 mfcc13_var, mfcc14_mean, mfcc14_var, mfcc15_mean, mfcc15_var,
                 mfcc16_mean, mfcc16_var, mfcc17_mean, mfcc17_var, mfcc18_mean,
                 mfcc18_var, mfcc19_mean, mfcc19_var, mfcc20_mean, mfcc20_var]
-    # print(features)
+
     return features
 
 
 def get_all_features_from_path(path):
+    """
+    This function calls the 2 other functions in this file,
+    so by calling this function user can create the features just by entering the file path.
+    :param path: path of the file to extract the features from.
+    :return: list with all features for the model to predict on.
+    """
 
     data, sr, file_name = get_data(path)
 
