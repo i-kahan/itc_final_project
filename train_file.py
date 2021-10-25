@@ -15,7 +15,7 @@ def train(x, y):
 
 def main():
     df = pd.read_csv(FILE_PATH)
-    x = df.drop(columns = ["filename", 'label'])
+    x = df.drop(columns=["filename", 'label'])
     y = df['label']
     model = train(x, y)
     pickle.dump(model, open(MODEL_FILE, 'wb'))
