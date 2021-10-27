@@ -1,8 +1,6 @@
 import pickle
-import pandas as pd
-import numpy as np
 import features_generation
-import pydub
+
 
 MODEL_PATH = 'model.pkl'
 ENCODER_PATH = 'encode_targets.pkl'
@@ -22,7 +20,6 @@ class GenreClassifier:
 
     @staticmethod
     def get_data(path):
-
         return features_generation.get_data(path)
 
     @staticmethod

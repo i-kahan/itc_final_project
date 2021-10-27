@@ -8,9 +8,12 @@ import pydub
 # this file helps to take file and prepare it for the model.
 
 
-def change2wav(src):
+def prepare_file(src, dst):
+    # with open(dst, 'r'):
     sound = pydub.AudioSegment.from_mp3(src)
-    return sound
+    print(sound)
+    sound.export(dst, format="wav")
+    return dst
 
 
 def get_data(path):
@@ -20,10 +23,12 @@ def get_data(path):
     :param path: path of the file to extract.
     :return: X, sr, file_name
     """
-    if path.endswith('.mp3'):
-        x, sr = change2wav(librosa.load(path))
-    else:
-        x, sr = librosa.load(path)
+    # if path.endswith('.mp3'):
+    #     path = prepare_file(path, path.rstrip('mp3')+'wav')
+    #     x, sr = librosa.load(path, duration=30)
+    #
+    # else:
+    x, sr = librosa.load(path, duration=30)
     directory, file_name = os.path.split(path)
     return x, sr, file_name
 
