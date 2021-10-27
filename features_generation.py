@@ -1,9 +1,15 @@
 import numpy as np
 import librosa
 import os
+import pydub
 
 # In order to predict the genre of music out of the original dataset,
 # this file helps to take file and prepare it for the model.
+
+
+def change2wav(src):
+    sound = pydub.AudioSegment.from_mp3(src)
+    return sound
 
 
 def get_data(path):
@@ -13,8 +19,11 @@ def get_data(path):
     :param path: path of the file to extract.
     :return: X, sr, file_name
     """
+    if path.endswith('.mp3'):
+        x, sr = change2wav(librosa.load(path))
+    else:
+        x, sr = librosa.load(path)
     directory, file_name = os.path.split(path)
-    x, sr = librosa.load(path)
     return x, sr, file_name
 
 
