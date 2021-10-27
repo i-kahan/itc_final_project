@@ -1,0 +1,7 @@
+Flask==2.0.1
+pandas==1.3.2
+numpy==1.20
+soundfile
+scikit-learn==0.24.2
+pickleshare==0.7.5
+librosa==0.8.1
