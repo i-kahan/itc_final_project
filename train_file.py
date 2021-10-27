@@ -26,7 +26,7 @@ def main():
     df = pd.read_csv(FILE_PATH)
     x = df.drop(columns=["filename", 'label'])
     y = encode_targets(df['label'])
-    model = train(x, y)
+    model = train(x.values, y)
     pickle.dump(model, open(MODEL_FILE, 'wb'))
 
 
