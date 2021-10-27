@@ -15,7 +15,7 @@ with open(ENCODER_PATH, 'rb') as pkl:
 
 
 class GenreClassifier:
-    
+
     def __init__(self):
         self.model_ = MODEL
         self.encoder_ = ENCODER
@@ -25,6 +25,10 @@ class GenreClassifier:
 
         return features_generation.get_data(path)
 
+    @staticmethod
+    def generate_features(data, sr):
+        return features_generation.get_all_features_from_data(data, sr)
+
     def predict(self, data):
         predict = self.model_.predict(data)
         return self.encoder_.inverse_transform(predict)
@@ -33,3 +37,15 @@ class GenreClassifier:
         data = features_generation.get_all_features_from_path(path)
         predict = self.model_.predict(data)
         return self.encoder_.inverse_transform(predict)
+
+
+def main():
+    clf = GenreClassifier()
+    x, sr, file_name = clf.get_data('C:\Download\jazz.00004.wav')
+    features = clf.generate_features(x, sr)
+    p = clf.predict([features])
+    print(p)
+
+
+if __name__ == '__main__':
+    main()

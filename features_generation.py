@@ -125,7 +125,7 @@ def get_all_features_from_data(data, sr):
     mfcc20_mean = np.mean(mfcc[19])
     mfcc20_var = np.var(mfcc[19])
 
-    features = [length, chroma_stft_mean, chroma_stft_var, rms_mean,
+    features = np.array([length, chroma_stft_mean, chroma_stft_var, rms_mean,
                 rms_var, spectral_centroid_mean, spectral_centroid_var,
                 spectral_bandwidth_mean, spectral_bandwidth_var, rolloff_mean,
                 rolloff_var, zero_crossing_rate_mean, zero_crossing_rate_var,
@@ -137,7 +137,7 @@ def get_all_features_from_data(data, sr):
                 mfcc11_mean, mfcc11_var, mfcc12_mean, mfcc12_var, mfcc13_mean,
                 mfcc13_var, mfcc14_mean, mfcc14_var, mfcc15_mean, mfcc15_var,
                 mfcc16_mean, mfcc16_var, mfcc17_mean, mfcc17_var, mfcc18_mean,
-                mfcc18_var, mfcc19_mean, mfcc19_var, mfcc20_mean, mfcc20_var]
+                mfcc18_var, mfcc19_mean, mfcc19_var, mfcc20_mean, mfcc20_var])
 
     return features
 
