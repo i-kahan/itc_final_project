@@ -17,6 +17,8 @@ tensorflow
 
 ## Usage
 
+This project support .wav and .pm3 files.
+
 There are 2 important file for this project, main and features_generation. the first holds the API class, and the second is a helper to create the features 
 from the raw data.
 The models of the project are prepared to use in 2 ways:
