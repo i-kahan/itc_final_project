@@ -1,6 +1,7 @@
 import pickle
 import features_generation
 from sys import argv
+import os
 
 MODEL_PATH = 'model.pkl'
 ENCODER_PATH = 'encode_targets.pkl'
@@ -36,12 +37,21 @@ class GenreClassifier:
         return self.encoder_.inverse_transform(predict)
 
 
-def main(argv):
-    clf = GenreClassifier()
-    x, sr, file_name = clf.get_data(argv[1])
-    features = clf.generate_features(x, sr)
-    p = clf.predict([features])[0]
-    print(p)
+def main(arg):
+    if os.path.isdir(arg[1]):
+        for file in os.listdir(arg[1]):
+            print(file)
+            clf = GenreClassifier()
+            x, sr, file_name = clf.get_data(arg[1]+'\\'+file)
+            features = clf.generate_features(x, sr)
+            p = clf.predict([features])[0]
+            print(p)
+    else:
+        clf = GenreClassifier()
+        x, sr, file_name = clf.get_data(arg[1])
+        features = clf.generate_features(x, sr)
+        p = clf.predict([features])[0]
+        print(p)
 
 
 if __name__ == '__main__':
