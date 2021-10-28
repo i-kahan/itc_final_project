@@ -38,7 +38,7 @@ class GenreClassifier:
 
 def main():
     clf = GenreClassifier()
-    x, sr, file_name = clf.get_data('C:\Download\jazz.00004.wav')
+    x, sr, file_name = clf.get_data('C:\Download\\04 Rogez.mp3')
     features = clf.generate_features(x, sr)
     p = clf.predict([features])
     print(p)

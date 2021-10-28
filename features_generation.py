@@ -22,12 +22,12 @@ def get_data(path):
     :param path: path of the file to extract.
     :return: X, sr, file_name
     """
-    # if path.endswith('.mp3'):
-    #     path = prepare_file(path, path.rstrip('mp3')+'wav')
-    #     x, sr = librosa.load(path, duration=30)
-    #
-    # else:
-    x, sr = librosa.load(path, duration=30)
+    if path.endswith('.mp3'):
+        path = prepare_file(path, path.rstrip('mp3')+'wav')
+        x, sr = librosa.load(path, duration=30)
+
+    else:
+        x, sr = librosa.load(path, duration=30)
     directory, file_name = os.path.split(path)
     return x, sr, file_name
 
