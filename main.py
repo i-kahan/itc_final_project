@@ -1,6 +1,6 @@
 import pickle
 import features_generation
-
+from sys import argv
 
 MODEL_PATH = 'model.pkl'
 ENCODER_PATH = 'encode_targets.pkl'
@@ -36,13 +36,13 @@ class GenreClassifier:
         return self.encoder_.inverse_transform(predict)
 
 
-def main():
+def main(argv):
     clf = GenreClassifier()
-    x, sr, file_name = clf.get_data('C:\Download\\04 Rogez.mp3')
+    x, sr, file_name = clf.get_data(argv[1])
     features = clf.generate_features(x, sr)
-    p = clf.predict([features])
+    p = clf.predict([features])[0]
     print(p)
 
 
 if __name__ == '__main__':
-    main()
+    main(argv)
