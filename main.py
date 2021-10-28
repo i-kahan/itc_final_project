@@ -40,12 +40,12 @@ class GenreClassifier:
 def main(arg):
     if os.path.isdir(arg[1]):
         for file in os.listdir(arg[1]):
-            print(file)
+            print('file name: ', file)
             clf = GenreClassifier()
             x, sr, file_name = clf.get_data(arg[1]+'\\'+file)
             features = clf.generate_features(x, sr)
             p = clf.predict([features])[0]
-            print(p)
+            print('prediction: ', p, '\n')
     else:
         clf = GenreClassifier()
         x, sr, file_name = clf.get_data(arg[1])
